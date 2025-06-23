@@ -902,8 +902,8 @@
       dropdown.style.top = `${inputRect.bottom + 8}px`;
 
       if (navigator.userAgent.match(/iPhone|Android.+Mobile/)) {
-        dropdown.style.left = `${input.x}px`;
-        dropdown.style.top = `${input.y + 308}px`;
+        dropdown.style.x = `${input.x}px`;
+        dropdown.style.y = `${input.y + 8}px`;
       }
 
       if (value) {
