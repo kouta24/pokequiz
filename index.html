@@ -1206,11 +1206,6 @@
               }
             }
           });
-          answerInput.addEventListener('focus', () => {
-            if (navigator.userAgent.match(/iPhone|Android.+Mobile/)) {
-              canvas.scrollIntoView({ behavior: 'instant', block: 'start' });
-            }
-          });
           const submitButton = document.getElementById('submitAnswerButton');
           submitButton.disabled = false;
           addEventListenerOnce(submitButton, 'click', () => {
