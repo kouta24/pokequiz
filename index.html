@@ -51,6 +51,7 @@
       align-items: center;
       gap: 20px;
       margin: 10px;
+      flex-wrap: nowrap; /* 改行を禁止 */
     }
     #startButton, #resetButton, #infoButton, .region-select-button {
       padding: 8px;
@@ -577,7 +578,7 @@
       #answerInput { font-size: 14px; width: 220px; margin: 5px; }
       .autocomplete-dropdown { width: 220px; }
       .input-button-container, .hint-button-container, .cry-button-container { flex-direction: column; gap: 5px; }
-      #stats { flex-direction: column; gap: 5px; }
+      #stats { flex-direction: column; gap: 5px; flex-wrap: nowrap; /* 改行を禁止 */ justify-content: space-between; /* 幅を有効活用 */ padding: 0 10px; /* 左右パディングで調整 */ }
       #score, #correctAnswers, #question, #hpDisplay { font-size: 14px; white-space: nowrap; }
       #result { font-size: 16px; }
       .answer-text { font-size: 20px; }
@@ -606,10 +607,10 @@
 <body>
   <h1>ポケモンモザイククイズ</h1>
   <div id="stats">
-    <span id="score">スコア: 0点</span>
-    <span id="correctAnswers">正解: 0問</span>
-    <span id="question">問題: 0/0</span>
-    <span id="hpDisplay">HP: 0/0</span>
+    <div id="score">スコア: 0点</div>
+    <div id="correctAnswers">正解: 0問</div>
+    <div id="question">問題: 0/0</div>
+    <div id="hpDisplay">HP: 0/0</div>
   </div>
   <div id="timerBarContainer"><div id="timerBar"></div></div>
   <canvas id="canvas" width="800" height="450"></canvas>
