@@ -1449,8 +1449,8 @@
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
       // スマホでキャンバスを画面上部にスクロール
-      if (window.innerWidth <= 600) {
-        canvas.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      if (navigator.userAgent.match(/iPhone|Android.+Mobile/)) {
+        canvas.scrollIntoView({ behavior: 'auto', block: 'start' });
       }
 
       currentImage = selectRandomImage(filteredImageList);
