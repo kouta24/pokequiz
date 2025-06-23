@@ -900,6 +900,12 @@
       const inputRect = input.getBoundingClientRect();
       dropdown.style.left = `${inputRect.left}px`;
       dropdown.style.top = `${inputRect.bottom + 8}px`;
+
+      if (navigator.userAgent.match(/iPhone|Android.+Mobile/)) {
+        dropdown.style.left = `${input.offsetX}px`;
+        dropdown.style.top = `${input.offsetY + 8}px`;
+      }
+
       if (value) {
         const selectedRegions = regions.length ? regions.filter((_, i) => document.getElementById(`region_${i}`)?.checked) : [];
         const filteredImageList = regions.length ? imageList.filter(item => selectedRegions.includes(item.region) || !item.region) : imageList;
