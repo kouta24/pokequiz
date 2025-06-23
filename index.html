@@ -24,6 +24,9 @@
     #timerBarContainer {
       margin: 1em auto 0 auto;
       height: 20px;
+      width: 90vw; /* ビューポート幅の90% */
+      max-width: 800px; /* キャンバス幅を上限 */
+      min-width: 300px; /* 最小幅を保証 */
       background-color: #cccccc;
       border-radius: 10px;
       overflow: hidden;
@@ -595,16 +598,17 @@
       #volumeControl { width: 80px; }
       #volumeControl::-webkit-slider-thumb, #volumeControl::-moz-range-thumb { width: 14px; height: 14px; }
       .modal-close { font-size: 24px; width: 36px; height: 36px; line-height: 36px; }
+      #timerBarContainer { width: 90vw; max-width: 100%; min-width: 280px; }
     }
   </style>
 </head>
 <body>
   <h1>ポケモンモザイククイズ</h1>
   <div id="stats">
-    <div id="score">スコア: 0点</div>
-    <div id="correctAnswers">正解: 0問</div>
-    <div id="question">問題: 0/0</div>
-    <div id="hpDisplay">HP: 0/0</div>
+    <span id="score">スコア: 0点</span>
+    <span id="correctAnswers">正解: 0問</span>
+    <span id="question">問題: 0/0</span>
+    <span id="hpDisplay">HP: 0/0</span>
   </div>
   <div id="timerBarContainer"><div id="timerBar"></div></div>
   <canvas id="canvas" width="800" height="450"></canvas>
@@ -1022,7 +1026,6 @@
     function startTimer() {
       timeRemaining = TIME_LIMIT;
       timerBarContainer.style.display = 'block';
-      timerBarContainer.style.width = `${canvas.width}px`;
       timerBar.style.width = '100%';
       timerBar.classList.remove('red');
       clearInterval(timerInterval);
