@@ -1191,7 +1191,7 @@
           const inputButtonContainer = document.createElement('div');
           inputButtonContainer.className = 'input-button-container';
           inputButtonContainer.innerHTML = `
-            <input id="answerInput" type="text" placeholder="ポケモン名を入力" autofocus autocomplete="off">
+            <input id="answerInput" type="text" placeholder="ポケモン名を入力" autocomplete="off">
             <button id="submitAnswerButton">回答する</button>
           `;
           controls.appendChild(inputButtonContainer);
@@ -1204,6 +1204,11 @@
                 submitButton.disabled = true;
                 submitAnswer(e.target.value.trim());
               }
+            }
+          });
+          answerInput.addEventListener('focus', () => {
+            if (navigator.userAgent.match(/iPhone|Android.+Mobile/)) {
+              canvas.scrollIntoView({ behavior: 'instant', block: 'start' });
             }
           });
           const submitButton = document.getElementById('submitAnswerButton');
