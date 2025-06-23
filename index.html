@@ -1448,12 +1448,6 @@
       document.getElementById('result').innerHTML = '';
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-      // スマホでキャンバスを画面上部にスクロール
-      if (navigator.userAgent.match(/iPhone|Android.+Mobile/)) {
-        canvas.scrollIntoView({ behavior: 'auto', block: 'start' });
-      }
-      canvas.scrollIntoView({ behavior: 'auto', block: 'start' });
-
       currentImage = selectRandomImage(filteredImageList);
       if (!currentImage) return checkQuizEnd();
       currentQuestion++;
@@ -1467,6 +1461,10 @@
       img.onload = () => {
         animateMosaic(img, currentImage.title, filteredImageList);
         startTimer();
+        // スマホでキャンバスを画面上部にスクロール
+        if (navigator.userAgent.match(/iPhone|Android.+Mobile/)) {
+          canvas.scrollIntoView({ behavior: 'instant', block: 'start' });
+        }
       };
 
       img.onerror = () => {
