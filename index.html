@@ -898,6 +898,8 @@
       }
       dropdown.innerHTML = '';
       const inputRect = input.getBoundingClientRect();
+
+      /*
       dropdown.style.left = `${inputRect.left}px`;
       dropdown.style.top = `${inputRect.bottom + 8}px`;
 
@@ -906,6 +908,7 @@
         dropdown.y = `${input.y + 8}px`;
         dropdown.style.top = 1000;
       }
+      */
 
       if (value) {
         const selectedRegions = regions.length ? regions.filter((_, i) => document.getElementById(`region_${i}`)?.checked) : [];
