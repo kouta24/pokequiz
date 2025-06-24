@@ -900,11 +900,15 @@
       const inputRect = input.getBoundingClientRect();
 
       dropdown.style.left = `${inputRect.left}px`;
-      dropdown.style.top = `${inputRect.bottom + 8}px`;
+      if (navigator.userAgent.match(/iPhone|Android.+Mobile/)) {
+        dropdown.style.top = 100;
+      }else{
+        dropdown.style.top = `${inputRect.bottom + 8}px`;
+      }
 
       if (navigator.userAgent.match(/iPhone|Android.+Mobile/)) {
         //dropdown.style.top = `${inputRect.top }px`;
-        dropdown.style.top = 100;
+        //dropdown.style.top = 100;
       }
 
       if (value) {
