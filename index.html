@@ -966,7 +966,8 @@
       // 候補ドロップダウンの表示位置　修正の余地あり 
       dropdown.style.left = `${inputRect.left}px`;
       if (navigator.userAgent.match(/iPhone|Android.+Mobile/)) {
-        dropdown.style.top = `${inputRect.bottom + 8}px`;
+        //dropdown.style.top = `${inputRect.bottom + 8}px`;
+        dropdown.style.top = 100;
       }else{
         dropdown.style.top = `${inputRect.bottom + 8}px`;
       }
