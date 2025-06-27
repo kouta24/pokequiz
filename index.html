@@ -49,7 +49,7 @@
       transition: width 0.1s linear, background-color 0.3s;
     }
     #timerBar.red {
-        background-color: #f44336;
+      background-color: #f44336;
     }
     #controls {
       margin: 20px;
@@ -155,7 +155,6 @@
       height: 50px;
       margin: 5px;
     }
-
     .choiceButton:hover:not(:disabled), #submitAnswerButton:hover:not(:disabled){
       background-color: #1e88e5;
       transform: scale(1.05);
@@ -490,6 +489,7 @@
       text-align: center;
     }
     .result-stats {
+      font-weight: bold;
       text-align: center;
       display: flex;
       flex-direction: column;
@@ -540,10 +540,12 @@
       padding-left: 10px;
     }
     .result-stats p:not(.congratulation) {
+      font-family: "Nico Moji";
       display: none;
     }
     .result-stats p.congratulation {
-      font-size: 20px;
+      font-family: "Nico Moji";
+      font-size: 24px;
       color: gold;
       margin-top: 12px;
       margin-bottom: 12px;
@@ -559,6 +561,7 @@
       text-align: center;
     }
     .wrong-answers-header h3 {
+      font-family: "Nico Moji";
       font-size: 24px;
       margin: 0;
     }
@@ -604,7 +607,7 @@
       font-size: 22px;
       font-weight: bold;
       margin: 20px 0 10px;
-      color: #FFAD5B;
+      color: #FF8E1D;
       
       filter: drop-shadow(5px 5px 5px #000000);
     }
@@ -1069,7 +1072,7 @@
         <div class="quiz-mode-info"><span class="stat-key">回答方法</span><span class="stat-colon">:</span><span class="stat-value">${quizMode === 'multiple' ? '4択式' : '記入式'}</span></div>
         <div class="hint-info"><span class="stat-key">ヒント</span><span class="stat-colon">:</span><span class="stat-value">${isHintEnabled ? '有効' : '無効'}</span></div>
         <div class="mode-info"><span class="stat-key">モード</span><span class="stat-colon">:</span><span class="stat-value">${modeText}</span></div>
-        <div class="stat-item"><span class="stat-key">スコア</span><span class="stat-colon">:</span><span class="stat-value">${score}点</span></div>
+        <div class="stat-item"><span class="stat-key">合計スコア</span><span class="stat-colon">:</span><span class="stat-value">${score}点</span></div>
         ${isGameOver && !isNightmareMode ? '<p>ゲームオーバー: HPが0になりました。</p>' : ''}
       `;
       const wrongAnswersSection = document.querySelector('.wrong-answers');
