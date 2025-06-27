@@ -244,7 +244,7 @@
       background: #1e88e5;
     }
     .autocomplete-dropdown {
-      
+      position: absolute;
       width: 220px;
       background-color: #424242;
       border: 1px solid #ffffff;
@@ -966,7 +966,8 @@
       // 候補ドロップダウンの表示位置　修正の余地あり 
       dropdown.style.left = `${inputRect.left}px`;
       if (navigator.userAgent.match(/iPhone|Android.+Mobile/)) {
-        dropdown.style.top = `${inputRect.bottom + 8}px`;
+        //dropdown.style.top = `${inputRect.bottom + 8}px`;
+        dropdown.style.top = `${inputRect.left + 8}px`;
       }else{
         dropdown.style.top = `${inputRect.bottom + 8}px`;
       }
