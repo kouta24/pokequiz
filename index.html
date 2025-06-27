@@ -243,21 +243,7 @@
     #volumeControl::-moz-range-thumb:hover {
       background: #1e88e5;
     }
-    /*
-    .autocomplete-dropdown {
-      position: absolute;
-      width: 220px;
-      background-color: #424242;
-      border: 1px solid #ffffff;
-      border-radius: 4px;
-      max-height: 150px;
-      overflow-y: auto;
-      z-index: 10;
-      display: none;
-      text-align: left;
-      font-size: 14px;
-    }
-    */
+
     .autocomplete-dropdown {
       position: absolute;
       top: 100%;
@@ -659,7 +645,6 @@
       .choiceButton, #submitAnswerButton { padding: 8px; font-size: 14px; width: 320px; margin: 5px; }
       .hintButton, #playCryButton { padding: 8px; font-size: 14px; width: 160px; margin: 5px; background-color: #4CAF50; }
       #answerInput { font-size: 14px; width: 220px; margin: 5px; }
-      /*.autocomplete-dropdown { width: 220px; }*/
       .autocomplete-dropdown { width: 100%; overflow-y: auto; }
       .input-button-container, .hint-button-container, .cry-button-container { flex-direction: column; gap: 5px; }
       #stats { flex-direction: row; gap: 10px; flex-wrap: nowrap; /* 改行を禁止 */ }
@@ -983,17 +968,7 @@
       // 候補ドロップダウンの表示位置　修正の余地あり
       dropdown.style.top = `${inputRect.bottom + window.scrollY}px`;
       dropdown.style.left = `${inputRect.left + window.scrollX}px`;
-      dropdown.style.width = `${inputRect.witdh}px`;
-
-      /*
-      dropdown.style.left = `${inputRect.left}px`;
-      if (navigator.userAgent.match(/iPhone|Android.+Mobile/)) {
-        //dropdown.style.top = `${inputRect.bottom + 8}px`;
-        dropdown.style.top = `${inputRect.bottom + 200}px`;
-      }else{
-        dropdown.style.top = `${inputRect.bottom + 8}px`;
-      }
-      */
+      dropdown.style.width = `${inputRect.width}px`;
 
       if (value) {
         const selectedRegions = regions.length ? regions.filter((_, i) => document.getElementById(`region_${i}`)?.checked) : [];
