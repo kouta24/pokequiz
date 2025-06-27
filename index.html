@@ -24,7 +24,6 @@
       text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
       margin-bottom: 1vmin;
     }
-
     #canvas {
       border: 2px solid #ffffff;
       margin: 20px auto;
@@ -141,7 +140,6 @@
       width: 160px;
       margin: 5px;
     }
-
     .hintButton, #playCryButton {
       padding: 8px;
       font-size: 16px;
@@ -639,6 +637,30 @@
       text-decoration: underline;
       color: #ffffff;
     }
+    #returnToTitleButton {
+      padding: 12px;
+      font-size: 18px;
+      font-weight: bold;
+      background-color: #f44336;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+      transition: all 0.2s ease;
+      width: 220px;
+      margin: 20px auto;
+      display: none;
+    }
+    #returnToTitleButton:hover:not(:disabled) {
+      background-color: #d32f2f;
+      transform: scale(1.05);
+    }
+    #returnToTitleButton:disabled {
+      background-color: #cccccc;
+      cursor: not-allowed;
+      opacity: 0.6;
+    }
     @media (max-width: 600px) {
       body { font-size: 14px; }
       #startButton, #resetButton { padding: 10px; font-size: 16px; width: 220px; }
@@ -671,6 +693,7 @@
       #volumeControl::-webkit-slider-thumb, #volumeControl::-moz-range-thumb { width: 14px; height: 14px; }
       .modal-close { font-size: 24px; width: 36px; height: 36px; line-height: 36px; }
       #timerBarContainer { width: 90vw; max-width: 100%; min-width: 280px; }
+      #returnToTitleButton { padding: 10px; font-size: 16px; width: 220px; }
     }
   </style>
 </head>
@@ -738,6 +761,7 @@
     </div>
   </div>
   <button id="startButton" onclick="startQuiz()">スタート</button>
+  <button id="returnToTitleButton" onclick="showReturnConfirm()" style="display: none;">タイトルへ戻る</button>
   <button id="resetButton" onclick="resetQuiz()" disabled>タイトルへ戻る</button>
   <div id="resultModal" class="modal-overlay">
     <div class="modal-content">
@@ -796,6 +820,7 @@
     let revealedPanels = [], questionImage = new Image();
     const canvas = document.getElementById('canvas'), ctx = canvas.getContext('2d', { willReadFrequently: true });
     const startButton = document.getElementById('startButton'), resetButton = document.getElementById('resetButton');
+    const returnToTitleButton = document.getElementById('returnToTitleButton');
     const infoButton = document.getElementById('infoButton'), controls = document.getElementById('controls');
     const scoreDisplay = document.getElementById('score'), correctAnswersDisplay = document.getElementById('correctAnswers');
     const questionDisplay = document.getElementById('question'), hpDisplay = document.getElementById('hpDisplay');
@@ -830,6 +855,12 @@
       if (currentStreak === 1) return 50;
       if (currentStreak === 2) return 100;
       return 150; // 3回以上は150点で固定
+    }
+
+    function showReturnConfirm() {
+      if (confirm('タイトル画面に戻りますか？現在の進捗はリセットされます。')) {
+        resetQuiz();
+      }
     }
 
     function initializeHintCountSelect() {
@@ -1074,6 +1105,7 @@
       correctAnswersDisplay.style.display = 'none';
       questionDisplay.style.display = 'none';
       hpDisplay.style.display = 'none';
+      returnToTitleButton.style.display = 'none';
     });
 
     function updateScoreAndQuestion() {
@@ -1126,6 +1158,7 @@
           showOriginalImage();
           startButton.disabled = false;
           startButton.style.display = 'block';
+          returnToTitleButton.style.display = 'block';
           controls.style.display = 'none';
           checkQuizEnd();
         }
@@ -1406,6 +1439,7 @@
         startButton.style.display = 'none';
         resetButton.style.display = 'block';
         resetButton.disabled = true;
+        returnToTitleButton.style.display = 'none';
         stopTimer();
         setTimeout(() => showResultModal(), 3000);
       }
@@ -1469,6 +1503,7 @@
       showOriginalImage();
       startButton.disabled = false;
       startButton.style.display = 'block';
+      returnToTitleButton.style.display = 'block';
       controls.style.display = 'none';
       const dropdown = document.querySelector('.autocomplete-dropdown');
       if (dropdown) dropdown.style.display = 'none';
@@ -1521,6 +1556,7 @@
       startButton.disabled = true;
       startButton.style.display = 'none';
       startButton.textContent = '次へ';
+      returnToTitleButton.style.display = 'none';
       canvas.style.display = 'block';
       controls.style.display = 'none';
       scoreDisplay.style.display = 'inline-block';
@@ -1552,6 +1588,7 @@
         document.getElementById('result').innerHTML = `画像読み込み失敗。<span class="answer-text">「<strong>${currentImage.title}</strong>」</span>`;
         startButton.disabled = false;
         startButton.style.display = 'block';
+        returnToTitleButton.style.display = 'block';
         controls.style.display = 'none';
         canvas.style.display = 'none';
         usedImages.pop();
@@ -1580,6 +1617,7 @@
       regionDropdown.style.display = 'none';
       startButton.textContent = 'スタート';
       startButton.disabled = false;
+      returnToTitleButton.style.display = 'none';
       scoreDisplay.style.display = 'none';
       correctAnswersDisplay.style.display = 'none';
       questionDisplay.style.display = 'none';
