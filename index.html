@@ -963,6 +963,7 @@
         document.body.appendChild(dropdown);
       }
       dropdown.innerHTML = '';
+      
       const inputRect = input.getBoundingClientRect();
 
       // 候補ドロップダウンの表示位置　修正の余地あり
@@ -976,7 +977,7 @@
         const matches = filteredImageList
           .filter(item => katakanaToHiragana(item.title).toLowerCase().startsWith(value))
           .map(item => item.title)
-          .slice(0, 10);
+          .slice(0, 5);
         matches.forEach(title => {
           const item = document.createElement('div');
           item.className = 'autocomplete-item';
